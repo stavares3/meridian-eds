@@ -22,6 +22,12 @@ function renderGraph(ids) {
     : PADY * 2 + ids.length * CARD + (ids.length - 1) * GAP);
   const cy = H / 2;
 
+  // Pre-compute each card's vertical centre so we never mutate the id objects.
+  const centres = ids.map((it, i) => {
+    const top = ids.length === 1 ? (H - CARD) / 2 : PADY + i * STEP;
+    return top + CARD / 2;
+  });
+
   const graph = document.createElement('div');
   graph.className = 'ig-graph';
   graph.style.width = `${W}px`;
@@ -32,9 +38,7 @@ function renderGraph(ids) {
   svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
 
   ids.forEach((it, i) => {
-    const top = ids.length === 1 ? (H - CARD) / 2 : PADY + i * STEP;
-    const y = top + CARD / 2;
-    it._y = y;
+    const y = centres[i];
     const midx = (cx + rx) / 2;
     const p = document.createElementNS(NS, 'path');
     p.setAttribute('d', `M${cx + 46},${cy} C${midx},${cy} ${midx},${y} ${rx - 2},${y}`);
@@ -50,11 +54,11 @@ function renderGraph(ids) {
   hub.innerHTML = '<span class="ig-hub__ic">◎</span><b>Unified profile</b><span>Real-Time CDP</span>';
   graph.append(hub);
 
-  ids.forEach((it) => {
+  ids.forEach((it, i) => {
     const el = document.createElement('div');
     el.className = `ig-node${it.primary ? ' is-primary' : ''}`;
     el.style.left = `${rx}px`;
-    el.style.top = `${it._y - CARD / 2}px`;
+    el.style.top = `${centres[i] - CARD / 2}px`;
     el.innerHTML = `<div class="ig-node__ns">${it.ns}${it.primary ? ' <span class="ig-node__pri">primary</span>' : ''}</div>`
       + `<code class="ig-node__val">${it.val.length > 26 ? `${it.val.slice(0, 24)}…` : it.val}</code>`
       + `<span class="ig-node__auth ig-node__auth--${it.auth}">${it.auth}</span>`;
