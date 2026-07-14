@@ -1,0 +1,28 @@
+/* Self-contained: uses the Meridian brand tokens if present, else these fallbacks. */
+.identity-graph .ig-wrap { max-width: 1000px; }
+.identity-graph .ig-graphwrap { overflow-x: auto; }
+.identity-graph .ig-graph { position: relative; margin: 0 auto; }
+.identity-graph .ig-graph__svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.identity-graph .ig-graph__link { fill: none; stroke: var(--line-strong, #d4ccbf); stroke-width: 1.5; }
+.identity-graph .ig-graph__link.is-primary { stroke: var(--copper, #0e449e); stroke-width: 2; }
+
+.identity-graph .ig-hub { position: absolute; width: 92px; height: 92px; border-radius: 50%; background: linear-gradient(135deg, var(--copper, #0e449e), var(--ember, #c2410c)); color: #fff; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; box-shadow: 0 8px 24px rgba(20, 17, 12, 0.14); z-index: 2; }
+.identity-graph .ig-hub__ic { font-size: 1.3rem; line-height: 1; }
+.identity-graph .ig-hub b { font-size: 0.66rem; margin-top: 0.15rem; }
+.identity-graph .ig-hub span { font-size: 0.54rem; opacity: 0.85; }
+
+.identity-graph .ig-node { position: absolute; width: 250px; background: var(--surface, #fff); border: 1px solid var(--line, #e7e1d8); border-radius: 12px; padding: 0.45rem 0.75rem; box-shadow: 0 2px 8px rgba(20, 17, 12, 0.08); z-index: 2; }
+.identity-graph .ig-node.is-primary { border-color: var(--copper, #0e449e); box-shadow: 0 0 0 3px var(--copper-soft, rgba(18, 87, 199, 0.12)); }
+.identity-graph .ig-node__ns { font-size: 0.7rem; font-weight: 700; color: var(--ink, #14110c); display: flex; align-items: center; gap: 0.4rem; }
+.identity-graph .ig-node__pri { font-size: 0.54rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; color: var(--copper-hi, #1257c7); background: var(--copper-soft, rgba(18, 87, 199, 0.12)); padding: 0.1em 0.4em; border-radius: 999px; }
+.identity-graph .ig-node__val { display: block; font-family: var(--mono-font-family, ui-monospace, monospace); font-size: 0.68rem; color: var(--ink-2, #4a4640); margin: 0.15rem 0; word-break: break-all; }
+.identity-graph .ig-node__auth { font-size: 0.58rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; padding: 0.1em 0.45em; border-radius: 999px; }
+.identity-graph .ig-node__auth--authenticated { background: rgba(47, 143, 107, 0.16); color: var(--success, #2f8f6b); }
+.identity-graph .ig-node__auth--ambiguous { background: rgba(224, 164, 40, 0.16); color: #a9791a; }
+.identity-graph .ig-node__auth--loggedout { background: var(--surface-alt, #f6f3ee); color: var(--ink-3, #7a746b); }
+
+.identity-graph .ig-note { margin: 0.9rem 0 0; font-size: 0.74rem; line-height: 1.45; color: var(--ink-2, #4a4640); max-width: 84ch; }
+
+@media (max-width: 700px) {
+  .identity-graph .ig-graph { transform: scale(0.72); transform-origin: top left; }
+}
